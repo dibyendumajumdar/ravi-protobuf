@@ -1,10 +1,8 @@
-#define PB_STATIC_API
 #include "pb.h"
 
 PB_NS_BEGIN
 
 
-#define LUA_LIB
 #include <lua.h>
 #include <lauxlib.h>
 
@@ -552,7 +550,7 @@ static int Lio_dump(lua_State *L) {
     return res;
 }
 
-LUALIB_API int luaopen_pb_io(lua_State *L) {
+PB_API int luaopen_pb_io(lua_State *L) {
     luaL_Reg libs[] = {
 #define ENTRY(name) { #name, Lio_##name }
         ENTRY(read),
@@ -627,7 +625,7 @@ static int Lconv_decode_double(lua_State *L) {
     return 1;
 }
 
-LUALIB_API int luaopen_pb_conv(lua_State *L) {
+PB_API int luaopen_pb_conv(lua_State *L) {
     luaL_Reg libs[] = {
         { "decode_uint32", Lconv_encode_uint32 },
         { "decode_int32", Lconv_encode_int32 },
@@ -793,7 +791,7 @@ static int Lbuf_pack(lua_State *L) {
     return 1;
 }
 
-LUALIB_API int luaopen_pb_buffer(lua_State *L) {
+PB_API int luaopen_pb_buffer(lua_State *L) {
     luaL_Reg libs[] = {
         { "__tostring", Lbuf_tostring },
         { "__len",      Lbuf_len },
@@ -1077,7 +1075,7 @@ static int Lslice_leave(lua_State *L) {
     return 2;
 }
 
-LUALIB_API int luaopen_pb_slice(lua_State *L) {
+PB_API int luaopen_pb_slice(lua_State *L) {
     luaL_Reg libs[] = {
         { "__tostring", Lslice_tostring },
         { "__len",      Lslice_len   },
@@ -1712,7 +1710,7 @@ static int Lpb_option(lua_State *L) {
 #undef  OPTS
 }
 
-LUALIB_API int luaopen_pb(lua_State *L) {
+PB_API int luaopen_pb(lua_State *L) {
     luaL_Reg libs[] = {
         { "pack",     Lbuf_pack     },
         { "unpack",   Lslice_unpack },
