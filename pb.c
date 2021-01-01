@@ -7,13 +7,14 @@
 # pragma warning(disable: 4127) /* const in if condition */
 #endif
 
-#define PB_STATIC_API
+//#define PB_STATIC_API
 #include "pb.h"
 
 PB_NS_BEGIN
 
 
-#define LUA_LIB
+//#define LUA_LIB
+#define LUALIB_API PB_API
 #include <lua.h>
 #include <lauxlib.h>
 
